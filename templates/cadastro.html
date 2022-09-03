@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TETI</title>
+        <link rel="stylesheet" href="../static/css/form.css">
+    </head>
+    <body>
+        <main>
+            <h3>TETI Cadastro</h3>
+            <form action="/cadastro" method="POST">
+                <div class="mb-3">
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="Name" name="Name" autofocus placeholder="Insert your name" required>
+                </div>
+                <div class="btn-area">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
+            {% if name %}
+                <div class="name">Your Name is <span>{{ name }}</span></div>
+            {% endif %}
+        </main>
+    </body>
+</html>
+
+
