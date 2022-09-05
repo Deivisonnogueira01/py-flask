@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<!-- cSpell:disable -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel= "stylesheet" type= "text/css" href= "../static/css/alnum_calc.css">
-        <link rel="shortcut icon" href="../static/images/ifms_f_logo.jpg" type="image/x-icon">
-        <title>TETI</title>
+        <link rel= "stylesheet" type= "text/css" href= "../static/css/alfa_calc.css">
     </head>
     <body>
         <main>
@@ -18,7 +15,7 @@
                     <label for="expression" onclick="clean()">Limpar</label>
                 </div>
                 {% if mensage %}
-                    <div id="mensage" class="expression-text">Digite apenas valores Alfanuméricos</div>
+                    <div id="mensage" class="expression-text">Comando Inválido</div>
                 {% endif %}
                 <div class="equal-signal" role="group">
                     <button type="submit" id="equal-button">=</button>
@@ -32,7 +29,7 @@
                 </div>
             {% endif %}
         </main>
-        <script src="../static/js/alnum_calc.js" type="text/javascript"></script>
+        <script src="../static/js/alfa_calc.js" type="text/javascript"></script>
     </body>
 </html>
 

@@ -4,13 +4,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../static/css/array_divs_1_pixel.css">
-        <link rel="shortcut icon" href="../static/images/ifms_f_logo.jpg" type="image/x-icon">
+        <link rel="stylesheet" href="../static/css/div.css">
+      
         <title>TETI</title>
     </head>
     <body>
-        <div class="content512"></div>
-        <div class="content512" style="margin-bottom: 50px;">
+        <div class="div-main"></div>
+        <div class="div-main" style="margin-bottom: 50px;">
         {% for x in range(512) %}
             <div class="row" id="row{{ x }}">
             {% for y in range(512) %}
@@ -19,6 +19,5 @@
             </div>
         {% endfor %}
         </div>
-        <script src="../static/js/array_divs_1_pixel.js"></script>
     </body>
 </html>

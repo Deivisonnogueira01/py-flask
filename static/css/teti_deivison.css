@@ -16,29 +16,10 @@ header {
     justify-content: space-around;
     margin-bottom: 50px;
 }
-<<<<<<< HEAD:static/css/teti_deivison.css
 
 .logo img {
-=======
-.header-photo {
-    padding: 15px;
-    height: 170px;
-}
-.header-photo img {
-    border: 2px solid #aaa;
-    height: 100%;
-}
-.header-content {
-    display: flex;
-}
-.ifms-logo {
-    display: flex;
-}
-.ifms-logo img {
->>>>>>> 2d5b0afe34fed9fcae6cfb7dd2aa30e6af51cbb1:static/css/teti_mauricio.css
     width: 170px;
 }
-
 
 .teti-info {
     padding-top: 7px;

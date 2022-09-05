@@ -1,5 +1,5 @@
 
-.content512 {
+.div-main {
     display: flex;
     margin-top: 50px;
     align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .divs1pixel {
-    background-color: #000;
+    background-color: orange;
     width: 1px;
     height: 1px;
 }

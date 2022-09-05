@@ -10,12 +10,7 @@ def teti_lessons():
     return render_template("teti_deivison.html")
 
 
-@app.route("/initial-template")
-def initial_template():
-    return "<h3>Olá Devs Seja Bem vindo ao minha Página Web!</h3>"
-
-
-@app.route("/data-manipulation")
+@app.route("/index")
 def data_manipulation():
     students_list = ["Deivison", "Geo", "Eduardo", "Vinicius", "Alexandre"]
     return render_template("index.html", students_list=students_list)
@@ -57,15 +52,16 @@ def simple_calculator():
             binnary = bin(int(result)).removeprefix('0b')
             mensage = None
         except: 
-            mensage = 'Verifique se digitou corretamente'
+            mensage = 'Comando Inválido !'
             result = binnary = None
         return render_template("calculator.html", result=result, binnary=binnary, mensage=mensage)
 
 
-@app.route("/alnum-calc", methods=["GET", "POST"]) 
+@app.route("/alfa-calc",
+methods=["GET", "POST"]) 
 def alphanum_calculator(): 
     if request.method == "GET":
-        return render_template("alnum_calc.html")
+        return render_template("alfa_calc.html")
     if request.method == "POST":
         expression = request.form.get('expression')
         try:
@@ -77,30 +73,21 @@ def alphanum_calculator():
         except:
             mensage = True
             binnary = None
-        return render_template("alnum_calc.html", binnary=array_2d, mensage=mensage)
+        return render_template("alfa_calc.html", binnary=array_2d, mensage=mensage)
 
 
-@app.route("/array_divs_1_pixel")
+@app.route("/div")
 def array_divs_1_pixel():
-    return render_template("array_divs_1_pixel.html")
+    return render_template("div.html")
 
 
-@app.route("/array_divs_1_pixel_colored")
+@app.route("/div_colored")
 def array_divs_1_pixel_colored():
-    row = lambda: [f'#{round(random() * 0xffffff):06X}' for _ in range(512)]
+    row = lambda: [f'#{round(random() * 0xffffff):06X}' for _ in range(512)] 
     col = [row() for _ in range(512)]
-    return render_template("array_divs_1_pixel_colored.html", colors=col)
+    return render_template("div_colored.html", colors=col)
 
 
-
-
-
-
-<<<<<<< HEAD
 if __name__ == '__main__': 
    app.run(debug = True)    
-=======
-if __name__ == '__main__':
-   app.run(host='0.0.0.0', debug = True)
-#    app.run(debug = True)
->>>>>>> 2d5b0afe34fed9fcae6cfb7dd2aa30e6af51cbb1
+
