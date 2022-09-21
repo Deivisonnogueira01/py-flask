@@ -1,3 +1,5 @@
+
+
 from flask import Flask, render_template, request
 from random import random
 import numpy, cv2, os
@@ -92,54 +94,64 @@ def array_divs_1_pixel_colored():
 
 
 @app.route("/galeria", methods=["GET", "POST"])
-def gallery():
-    path_prefix = './' if os.path.exists('./static') else 'teti_mauricio/'
-    path = f'{path_prefix}static/images/gallery'
+def myGaleria():
+
+    path_prefix = './' if os.path.exists('./static') else 'teti_deivison/'
+    path = f'{path_prefix}static/images/galeria'
+
     if request.method == "GET":
-        for image_name in os.listdir(path):
-            os.remove(f'{path}/{image_name}')
-        return render_template("week06to10/gallery.html")
+        for nick_img in os.listdir(path):
+            os.remove(f'{path}/{nick_img}')
+        return render_template("galeria.html")
+
     if request.method == "POST":
+
         try:
             buffer_file = request.files['input-file-image']
+
             bytes_array = numpy.frombuffer(buffer_file.read(), numpy.uint8)
+
             image: numpy.ndarray = cv2.imdecode(bytes_array, cv2.IMREAD_COLOR)
+
+
             cv2.imwrite(f'{path}/image_{datetime.now()}.jpg', image)
 
-            if os.path.exists(f'{path}/photos.zip'):
-                os.remove(f'{path}/photos.zip')
+            if os.path.exists(f'{path}/imagespy.zip'):
+                os.remove(f'{path}/imagespy.zip')
 
-            with ZipFile(f'{path}/photos.zip', 'w') as zip_obj:
+            with ZipFile(f'{path}/imagespy.zip', 'w') as zip_obj:
                 images_list = os.listdir(path)
-                images_list.remove('photos.zip')
-                for image_name in images_list:
-                    zip_obj.write(f'{path}/{image_name}')
+                images_list.remove('imagespy.zip')
+                for nick_img in images_list:
+                    zip_obj.write(f'{path}/{nick_img}')
 
             images_list = os.listdir(path)
-            images_list.remove('photos.zip')
-            return render_template("week06to10/gallery.html", images_list=images_list, zip_file_exists=True)
+            images_list.remove('imagespy.zip')
+            return render_template("galeria.html", images_list=images_list, zip_file_exists=True)
         except:
-            return render_template("week06to10/gallery.html")
+            return render_template("galeria.html")
 
 
+@app.route("/transferencia", methods=["GET", "POST"])
 
-#[ Semana 7 ]---------------------------------------------------------------------------------------------------------------->
-@app.route("/transposicao-pixels", methods=["GET", "POST"])
-def pixel_transposition():
+def transferencia_px():
     if request.method == "GET":
-        return render_template("week06to10/pixel_transposition.html")
+        return render_template("transferenciapx.html")
     if request.method == "POST":
         try:
             buffer_file = request.files['input-file-image']
+
             bytes_array = numpy.frombuffer(buffer_file.read(), numpy.uint8)
+
             image: numpy.ndarray = cv2.imdecode(bytes_array, cv2.IMREAD_COLOR)
 
             rgb_to_hex = lambda row: [f'#{pixel[2]:02X}{pixel[1]:02X}{pixel[0]:02X}' for pixel in row]
+
             matriz = [rgb_to_hex(row) for row in image]
    
-            return render_template("week06to10/pixel_transposition.html", image=matriz)
+            return render_template("transferenciapx.html", image=matriz)
         except:
-            return render_template("week06to10/pixel_transposition.html")
+            return render_template("transferenciapx.html")
 
 
 if __name__ == '__main__': 
