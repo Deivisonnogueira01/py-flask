@@ -133,7 +133,7 @@ def myGaleria():
 
 
 @app.route("/transferencia", methods=["GET", "POST"])
-
+ 
 def transferencia_px():
     if request.method == "GET":
         return render_template("transferenciapx.html")
@@ -152,7 +152,7 @@ def transferencia_px():
             return render_template("transferenciapx.html", image=matriz)
         except:
             return render_template("transferenciapx.html")
-
+ 
 
 if __name__ == '__main__': 
    app.run(debug = True)    
