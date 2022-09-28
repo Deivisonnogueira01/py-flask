@@ -166,8 +166,9 @@ def rotacao_imagem():
        if request.method == "POST":
             try:
 
-                print("TESTE")
-
+                dist = ((x1-x2) **2 + (y1 - y2)**2) **0.5
+                print("TESTE", dist)
+                
                 return render_template("funcao_imagem.html")
 
             except:
