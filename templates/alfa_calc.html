@@ -7,9 +7,11 @@
         <link rel= "stylesheet" type= "text/css" href= "../static/css/alfa_calc.css">
     </head>
     <body>
+
         <main>
             <h3>Calculadora Alfanumérica</h3>
-            <form action="/alnum-calc" method="POST">
+
+            <form action="/alfa-calc" method="POST">
                 <div class="expression-input">
                     <input type="text" id="expression" name="expression" aria-describedby="mensage" autofocus required>
                     <label for="expression" onclick="clean()">Limpar</label>
@@ -21,6 +23,7 @@
                     <button type="submit" id="equal-button">=</button>
                 </div>
             </form>
+            
             {% if binnary %}
                 <h5>Resultado</h5>
                 <div class="result">
@@ -29,6 +32,7 @@
                 </div>
             {% endif %}
         </main>
+
         <script src="../static/js/alfa_calc.js" type="text/javascript"></script>
     </body>
 </html>

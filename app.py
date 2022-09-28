@@ -2,15 +2,17 @@
 
 from flask import Flask, render_template, request
 from random import random
-import numpy, cv2, os
+import numpy
+import cv2
+import os
 from datetime import datetime
 from zipfile import ZipFile
 
 app = Flask(__name__)
 name_list = []
 
- 
-@app.route("/")    
+
+@app.route("/")
 def teti_lessons():
     return render_template("teti_deivison.html")
 
@@ -21,7 +23,7 @@ def data_manipulation():
     return render_template("index.html", students_list=students_list)
 
 
-@app.route("/cadastro", methods=["GET", "POST"]) 
+@app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "GET":
         return render_template("cadastro.html")
@@ -44,38 +46,41 @@ def add_name():
         name_list.append(name)
         return render_template("list.html", name_list=name_list)
 
-  
+
 @app.route("/calculator", methods=["GET", "POST"])
 def simple_calculator():
     if request.method == "GET":
         return render_template("calculator.html")
     if request.method == "POST":
         expression = request.form.get('expression')
-        expression = expression.replace('÷','/').replace('𝗑', '*').replace(',', '.')
+        expression = expression.replace(
+            '÷', '/').replace('𝗑', '*').replace(',', '.')
         try:
             result = eval(expression)
             binnary = bin(int(result)).removeprefix('0b')
             mensage = None
-        except: 
+        except:
             mensage = 'Comando Inválido !'
             result = binnary = None
         return render_template("calculator.html", result=result, binnary=binnary, mensage=mensage)
 
 
 @app.route("/alfa-calc",
-methods=["GET", "POST"]) 
-def alphanum_calculator(): 
+           methods=["GET", "POST"])
+def alphanum_calculator():
     if request.method == "GET":
         return render_template("alfa_calc.html")
     if request.method == "POST":
         expression = request.form.get('expression')
         try:
-            binnary = ''.join(format(ord(caractere), '08b') for caractere in expression)
+            binnary = ''.join(format(ord(caractere), '08b')
+                              for caractere in expression)
             size = len(binnary)
             separator = 480
-            array_2d = [[binnary[n:n + separator]] for n in range(0, size, separator) if n < size]
+            array_2d = [[binnary[n:n + separator]]
+                for n in range(0, size, separator) if n < size]
             mensage = False
-        except:
+        except: 
             mensage = True
             binnary = None
         return render_template("alfa_calc.html", binnary=array_2d, mensage=mensage)
@@ -88,7 +93,8 @@ def array_divs_1_pixel():
 
 @app.route("/div_colored")
 def array_divs_1_pixel_colored():
-    row = lambda: [f'#{round(random() * 0xffffff):06X}' for _ in range(512)] 
+    def row(): return [
+            f'#{round(random() * 0xffffff):06X}' for _ in range(512)]
     col = [row() for _ in range(512)]
     return render_template("div_colored.html", colors=col)
 
@@ -113,7 +119,6 @@ def myGaleria():
 
             image: numpy.ndarray = cv2.imdecode(bytes_array, cv2.IMREAD_COLOR)
 
-
             cv2.imwrite(f'{path}/image_{datetime.now()}.jpg', image)
 
             if os.path.exists(f'{path}/imagespy.zip'):
@@ -133,7 +138,6 @@ def myGaleria():
 
 
 @app.route("/transferencia", methods=["GET", "POST"])
- 
 def transferencia_px():
     if request.method == "GET":
         return render_template("transferenciapx.html")
@@ -145,15 +149,30 @@ def transferencia_px():
 
             image: numpy.ndarray = cv2.imdecode(bytes_array, cv2.IMREAD_COLOR)
 
-            rgb_to_hex = lambda row: [f'#{pixel[2]:02X}{pixel[1]:02X}{pixel[0]:02X}' for pixel in row]
+            def rgb_to_hex(row): return [
+                           f'#{pixel[2]:02X}{pixel[1]:02X}{pixel[0]:02X}' for pixel in row]
 
             matriz = [rgb_to_hex(row) for row in image]
-   
+
             return render_template("transferenciapx.html", image=matriz)
         except:
             return render_template("transferenciapx.html")
- 
 
-if __name__ == '__main__': 
-   app.run(debug = True)    
 
+@app.route("/funcao-imagem", methods=["GET", "POST"])
+def rotacao_imagem():
+       if request.method == "GET":
+            return render_template("funcao_imagem.html")
+       if request.method == "POST":
+            try:
+
+                print("TESTE")
+
+                return render_template("funcao_imagem.html")
+
+            except:
+                print("TESTE 02")
+                return render_template("funcao_imagem.html")
+
+if __name__ == '__main__':
+    app.run(debug= True)
