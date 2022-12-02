@@ -159,21 +159,14 @@ def transferencia_px():
             return render_template("transferenciapx.html")
 
 
-@app.route("/funcao-imagem", methods=["GET", "POST"])
-def rotacao_imagem():
-       if request.method == "GET":
-            return render_template("funcao_imagem.html")
-       if request.method == "POST":
-            try:
-
-                dist = ((x1-x2) **2 + (y1 - y2)**2) **0.5
-                print("TESTE", dist)
-                
-                return render_template("funcao_imagem.html")
-
-            except:
-                print("TESTE 02")
-                return render_template("funcao_imagem.html")
+@app.route("/api", methods=["POST"])
+def recebaToken():
+     token = 'receba'
+     if request.method == 'POST':
+         tokenForm = request.form.get('token')
+         if tokenForm == token:
+            return  render_template("api.html", MSN = "sucess")
+         return render_template("api.html", MSN = "invalid")   
 
 if __name__ == '__main__':
     app.run(debug= True)
