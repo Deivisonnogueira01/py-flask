@@ -2,11 +2,11 @@
 class User:
     
     def __init__(self):
-        self.id_usuario = 0
+        self.id = 0
         self.nome = ""
-        self.password = ""
+        self.senha = ""
     def validate(self):
-        if self.password =="123" and self.nome == "def":
+        if self.password =="123" and self.nome == "deivison":
             return True
         return False
      

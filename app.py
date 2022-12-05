@@ -10,7 +10,7 @@ from datetime import datetime
 from zipfile import ZipFile
 #from Triangulo import Triangulo
 #from User import User
-#from Carro import Carro
+from Carro import Carro
 
 app = Flask(__name__)
 name_list = []
@@ -170,7 +170,9 @@ def recebaToken():
         tokenForm = request.form.get('token')
         if tokenForm == token:
             return render_template("api.html", MSN="SUCCESS")
-        return render_template("api.html", MSN="invalid")
+                
+        return render_template("api.html", MSN="FAILURE") 
+
 
 
 
@@ -196,7 +198,7 @@ def carroProperties():
     if request.method == 'GET':
         return render_template('carro.html')
     if request.method == 'POST':
-       # car = Carro()
+       car = Carro()
 
        return render_template('carro.html')
 

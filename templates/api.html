@@ -1,44 +1,30 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
- 
-    <link rel="stylesheet" href="../static/css/api.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teti</title>
+    <script src="../static/js/api.js"></script>
 </head>
+<body>
 
-<main>
-    <h3>API</h3>
+    <!-- <form action="/apiteti" method="POST">
+        <input type="hidden" value="ABC" name="token" id="">
+        <input type="submit" value="enviar"  id="">
+    </form> -->
+    <button onclick="resultado()">Clique aqui</button>
+   
 
-    <form action="/api" method="POST">
-        <label for="name">Nome:</label>
-            <input type="text" id="name" name="name"><br><br>
-            {% comment %} <input type="submit" value="Submit"> {% endcomment %}v
-        {%for name in lista%}
-                <input type="submit" name="{{ name }}" value="{{ name }}">
-                $print "{{ name }}
-        {% endfor %}
-        </form>
-        <div>
-            {%if msn == 'Status 200': %}
-                <h1> conexão feita com sucesso </h1>
-            {%else: %}
-                <h1> falha na conexão </h1>
-            {%endif%}
-        </div>
- 
-            </form>
-
-    <div class="py-4 text-center">
-        <a href="/"><button type="button" class="btn btn-success">Voltar</button></a>
+    <div>
+        {% if msn == 'SUCCESS'%}
+         <h1>Conectado com Sucesso</h1>
+        {%elif msn == 'FAILURE'%}
+        <h1>
+            ERROR 404
+        </h1>
+        {%endif%}
     </div>
-</main>
-
-
-
+    
 </body>
-
 </html>
