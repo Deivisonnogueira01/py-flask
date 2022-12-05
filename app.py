@@ -8,9 +8,6 @@ import cv2
 import os
 from datetime import datetime
 from zipfile import ZipFile
-#from Triangulo import Triangulo
-#from User import User
-from Carro import Carro
 
 app = Flask(__name__)
 name_list = []
@@ -175,22 +172,9 @@ def recebaToken():
 
 
 
-
-#@app.route('/triangulo', methods=['POST', 'GET'])
-#def funcTriagulo():
-#    if request.method == 'GET':
-#        return render_template()
-#    if request.method == 'POST':
-#        tri = Triangulo()
-#        tri.ladoA = int(request.form.get('ladoA'))
-#        tri.ladoB = int(request.form.get('ladoB'))
-#        tri.ladoC = int(request.form.get('ladoC'))
-
-#        perimetro = tri.getPerimetro()
-#        maiorLado = tri.getMaiorLado()
-#        area = tri.getArea()
-#        print(perimetro)
-#        return render_template('triangulo.html', perimetro=perimetro, area=area, maiorLado=maiorLado, ladoA=tri.ladoA, ladoB=tri.ladoB, ladoC=tri.ladoC)
+@app.route("/triangulo")
+def triangule():
+    return render_template("triangulo.html")
 
 
 @app.route('/carro', methods=['POST', 'GET'])
@@ -204,4 +188,4 @@ def carroProperties():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)

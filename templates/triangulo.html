@@ -1,74 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teti</title>
-    <link rel="stylesheet" href="../static/css/triangulo.css">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Triângulo</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="../static/css/triangulo.css">
 </head>
 
-<body>
-    <div id="container">
+<body className='snippet-body'>
+    <div class="row py-5 px-4">
+        <div class="col-md-5 mx-auto">
+            <div class="bg-white shadow rounded overflow-hidden">
 
-        <div id="grid">
-            <form action="/triangulo" method="POST" onsubmit="submeterInfo()">
-                <label>Insira lado A de um triangulo</label>
-                <input type="text" id="ladoA" onload="alterarBorda()" name="ladoA" value="{{ladoA}}"
-                    placeholder="insira lado A">
-                <br>
-                <label>Insira lado B de um triangulo</label>
-                <input type="text" id="ladoB" name="ladoB" placeholder="insira lado B" value="{{ladoB}}"
-                    onchange="alterarBorda()">
-                <br>
-                <label>Insira lado C de um triangulo</label>
-                <input type="text" id="ladoC" name="ladoC" placeholder="insira lado C" value="{{ladoC}}"
-                    onchange="alterarBorda()">
-                <br>
-                <input type="submit" value="Enviar">
-            </form>
-        </div>
-        <div id="content">
+                <div class="py-4 px-4">
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <div class="mb-3">
+                            <input type="number" class="form-control" id="ladoA" name="ladoA" placeholder="insira o lado A">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" class="form-control" id="ladoB" name="ladoB" placeholder="insira o lado B">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" class="form-control" id="ladoC" name="ladoC" placeholder="insira o lado C">
+                        </div>
+                    </div>
+                </div>
 
-            <div id="valor">
-                <h3>Informações</h3>
-                <button onclick="perimetroResult()">
-                    <p>Perimetro triangulo</p>
-                </button>
-                <button onclick="areaResult()">
-                    <p>Área do triangulo</p>
-                </button>
-                <button onclick="ladoMaior()">
-                    <p>Maior lado do triangulo</p>
-                </button>
 
-            </div>
-            <div id="resultado">
-                <p id="perimetro">
-                    Perimetro: {{perimetro}}
-                </p>
-                <p id="area">
-                    Area: {{area}}
-                </p>
-                <p id="maiorLado">
-                    Maior lado: {{maiorLado}}
-                </p>
-
-            </div>
-            <div id="triangulo">
-                <div id="pico">
-
+                <div class="buttons-triagulo">
+                    <a href="/"><button type="button" class="btn btn-outline-success">Voltar</button></a>
+            
+                    <a href="/"><button type="button" class="btn btn-outline-success">Calcular</button></a>
                 </div>
             </div>
         </div>
-
     </div>
-    <script>
+    <script type='text/javascript'
+        src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script src="{{ url_for('static',filename='js/pixel.js') }}"> </script>
 
-
-    </script>
-    <script src="../static/js/triangulo.js"></script>
 </body>
 
 </html>
