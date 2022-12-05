@@ -2,11 +2,15 @@
 
 from flask import Flask, render_template, request
 from random import random
+from sre_constants import SUCCESS
 import numpy
 import cv2
 import os
 from datetime import datetime
 from zipfile import ZipFile
+#from Triangulo import Triangulo
+#from User import User
+#from Carro import Carro
 
 app = Flask(__name__)
 name_list = []
@@ -78,9 +82,9 @@ def alphanum_calculator():
             size = len(binnary)
             separator = 480
             array_2d = [[binnary[n:n + separator]]
-                for n in range(0, size, separator) if n < size]
+                        for n in range(0, size, separator) if n < size]
             mensage = False
-        except: 
+        except:
             mensage = True
             binnary = None
         return render_template("alfa_calc.html", binnary=array_2d, mensage=mensage)
@@ -94,7 +98,7 @@ def array_divs_1_pixel():
 @app.route("/div_colored")
 def array_divs_1_pixel_colored():
     def row(): return [
-            f'#{round(random() * 0xffffff):06X}' for _ in range(512)]
+        f'#{round(random() * 0xffffff):06X}' for _ in range(512)]
     col = [row() for _ in range(512)]
     return render_template("div_colored.html", colors=col)
 
@@ -150,7 +154,7 @@ def transferencia_px():
             image: numpy.ndarray = cv2.imdecode(bytes_array, cv2.IMREAD_COLOR)
 
             def rgb_to_hex(row): return [
-                           f'#{pixel[2]:02X}{pixel[1]:02X}{pixel[0]:02X}' for pixel in row]
+                f'#{pixel[2]:02X}{pixel[1]:02X}{pixel[0]:02X}' for pixel in row]
 
             matriz = [rgb_to_hex(row) for row in image]
 
@@ -161,12 +165,41 @@ def transferencia_px():
 
 @app.route("/api", methods=["POST"])
 def recebaToken():
-     token = 'receba'
-     if request.method == 'POST':
-         tokenForm = request.form.get('token')
-         if tokenForm == token:
-            return  render_template("api.html", MSN = "sucess")
-         return render_template("api.html", MSN = "invalid")   
+    token = 'receba'
+    if request.method == 'POST':
+        tokenForm = request.form.get('token')
+        if tokenForm == token:
+            return render_template("api.html", MSN="SUCCESS")
+        return render_template("api.html", MSN="invalid")
+
+
+
+#@app.route('/triangulo', methods=['POST', 'GET'])
+#def funcTriagulo():
+#    if request.method == 'GET':
+#        return render_template()
+#    if request.method == 'POST':
+#        tri = Triangulo()
+#        tri.ladoA = int(request.form.get('ladoA'))
+#        tri.ladoB = int(request.form.get('ladoB'))
+#        tri.ladoC = int(request.form.get('ladoC'))
+
+#        perimetro = tri.getPerimetro()
+#        maiorLado = tri.getMaiorLado()
+#        area = tri.getArea()
+#        print(perimetro)
+#        return render_template('triangulo.html', perimetro=perimetro, area=area, maiorLado=maiorLado, ladoA=tri.ladoA, ladoB=tri.ladoB, ladoC=tri.ladoC)
+
+
+@app.route('/carro', methods=['POST', 'GET'])
+def carroProperties():
+    if request.method == 'GET':
+        return render_template('carro.html')
+    if request.method == 'POST':
+       # car = Carro()
+
+       return render_template('carro.html')
+
 
 if __name__ == '__main__':
-    app.run(debug= True)
+    app.run(debug=True)
