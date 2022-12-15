@@ -161,11 +161,10 @@ def transferencia_px():
 
 
 
-
-@app.route("/api", methods=["POST"])
+@app.route("/api", methods=["GET", "POST"])
 def recebaToken():
     token = 'receba'
-    if request.method == 'POST':
+    if request.method == 'GET':
         tokenForm = request.form.get('token')
         if tokenForm == token:
             return render_template("api.html", MSN="SUCCESS")
