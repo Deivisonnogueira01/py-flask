@@ -1,36 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
 
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../static/css/transferenciapx.css">
-        <title>TETI</title>
-    </head>
-    <body>
-        <header>
-            <div class="btn-area">
-                <a href="/transferencia" class="btn-primary">Reiniciar</a>
-                <form action="/transferencia" method="post" enctype="multipart/form-data">
-                    <div class="btn-set">
-                        <input type="file" class="form-control" name="input-file-image">
-                        <button type="submit" class="btn-success">Importar</button>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="../../static/css/transferenciapx.css">
+    <title>TETI</title>
+
+</head>
+
+<body className='snippet-body'>
+    <div class="row py-5 px-4">
+        <div class="col-md-5 mx-auto">
+            <div class="bg-white shadow rounded overflow-hidden">
+
+                <div class="py-4 px-4">
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="font-italic mb-0">
+                            Gerador de Imagem de 1px
+                        </p>
+
+                        <form action="/transferencia" method="post" enctype="multipart/form-data">
+                            <div class="btn-set">
+                                <a href="/transferencia" class="btn btn-primary">Reiniciar</a>
+                                <input type="file" class="form-control" name="input-file-image">
+                                <button type="submit" class="btn btn-success">Importar</button>
+                            </div>
+                        </form>
+
+                        </header>
+
+                        {% if image %}
+                        <main>
+                            {% for row in image %}
+                            <div class="image-row">
+                                {% for pixel in row %}
+                                <div class="image-pixel" style="background-color: {{ pixel }};"></div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </main>
+                        {% endif %}
                     </div>
-                </form>
+                </div>
             </div>
-        </header>
 
-        {% if image %}
-        <main>
-            {% for row in image %}
-            <div class="image-row">
-                {% for pixel in row %}
-                    <div class="image-pixel" style="background-color: {{ pixel }};"></div>
-                {% endfor %}
-            </div>
-            {% endfor %}
-        </main>
-        {% endif %}
-    </body>
+</body>
+
 </html>

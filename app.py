@@ -160,6 +160,8 @@ def transferencia_px():
             return render_template("transferenciapx.html")
 
 
+
+
 @app.route("/api", methods=["POST"])
 def recebaToken():
     token = 'receba'
